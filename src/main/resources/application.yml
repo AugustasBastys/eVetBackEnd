@@ -1,11 +1,13 @@
 azure:
   activedirectory:
-    tenant-id: d55dae4e-31dd-47a5-af7b-f450f4430912
-#    base-uri: https://evetclinic.onmicrosoft.com.b2clogin.com/evetclinic.onmicrosoft.com.onmicrosoft.com/
-    app-id-uri: https://evetclinic.onmicrosoft.com/4b64e43d-021a-4e17-95b3-aea280f7601f
-    client-id: 4b64e43d-021a-4e17-95b3-aea280f7601f
-#    client-secret: JBU7Q~JgHfN57FJaKhUiD4h_3Srnflcxa~4UM
-#    login-flow: sign-up-or-sign-in
-#    logout-success-url: http://localhost:8080/
-#    user-flows:
-#      sign-up-or-sign-in: B2C_1_signupsignin1
+    b2c:
+      tenant-id: d55dae4e-31dd-47a5-af7b-f450f4430912
+      base-uri: https://evetclinic.b2clogin.com
+      client-id: 036d9c28-5afb-453d-b36f-61512a5ac0bb
+      user-flows:
+        sign-up-or-sign-in: B2C_1_signupsignin1
+#      app-id-uri: https://evetclinic.onmicrosoft.com/4b64e43d-021a-4e17-95b3-aea280f7601f
+#      client-secret: JBU7Q~JgHfN57FJaKhUiD4h_3Srnflcxa~4UM
+#      login-flow: sign-up-or-sign-in
+#      logout-success-url: http://localhost:8080/
+
