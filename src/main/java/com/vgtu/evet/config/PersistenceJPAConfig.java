@@ -20,7 +20,8 @@ public class PersistenceJPAConfig {
         LocalContainerEntityManagerFactoryBean em
                 = new LocalContainerEntityManagerFactoryBean();
         em.setDataSource(dataSource());
-        em.setPackagesToScan(new String[] { "com.vgtu.evet.entities" });
+        em.setPackagesToScan("com.vgtu.evet.entities.appointments", "com.vgtu.evet.entities.clients",
+                "com.vgtu.evet.entities.petRecords", "com.vgtu.evet.entities.pets", "com.vgtu.evet.entities.vetServices");
 
         JpaVendorAdapter vendorAdapter = new HibernateJpaVendorAdapter();
         em.setJpaVendorAdapter(vendorAdapter);
@@ -32,15 +33,20 @@ public class PersistenceJPAConfig {
     @Bean
     public DataSource dataSource(){
         DriverManagerDataSource dataSource = new DriverManagerDataSource();
-        dataSource.setDriverClassName("com.mysql.cj.jdbc.Driver");
+        dataSource.setDriverClassName("org.mariadb.jdbc.Driver");
         dataSource.setUsername("root");
-        dataSource.setUrl("jdbc:mysql://localhost:3306/e_vet");
+        dataSource.setUrl("jdbc:mariadb://localhost:3306/e_vet");
         return dataSource;
+
     }
 
     Properties additionalProperties() {
         Properties properties = new Properties();
-        properties.setProperty("hibernate.dialect", "org.hibernate.dialect.MySQL5Dialect");
+        properties.setProperty("hibernate.dialect", "org.hibernate.dialect.MariaDBDialect");
+        properties.setProperty("javax.persistence.schema-generation.scripts.action", "create");
+        properties.setProperty("javax.persistence.schema-generation.scripts.create-target", "create.sql");
+        properties.setProperty("javax.persistence.schema-generation.scripts.create-source", "metadata");
+
 
         return properties;
     }
