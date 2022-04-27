@@ -26,7 +26,7 @@ public class PetAggregate {
     @Autowired
     private OwnedPetRepository ownedPetRepository;
 
-    public Pet handleCreatePetCommand(CreatePetCommand petCommand) {
+    public Pet handleCreatePetCommand(CreatePetCommand petCommand, String ownerId) {
 
         Pet pet = Pet.builder()
                 .birthday(petCommand.getBirthDay())
@@ -39,7 +39,7 @@ public class PetAggregate {
 
        petRepository.save(pet);
 
-       savePetAndPetOwnerRelationship(petCommand.getPetOwnerIds(), pet);
+       ownedPetRepository.save(OwnedPet.builder().petOwner(ownerId).pet(pet).build());
 
        return pet;
     }
@@ -59,22 +59,8 @@ public class PetAggregate {
         if(updatePetCommand.isHidden()) {
             pet.setHidden(true);
         }
-        if(updatePetCommand.getPetOwnerIds() != null) {
-            savePetAndPetOwnerRelationship(updatePetCommand.getPetOwnerIds(), pet);
-        }
 
         return petRepository.save(pet);
-    }
-
-    private void savePetAndPetOwnerRelationship(List<Integer> ownerIds, Pet pet) {
-        List<PetOwner> petOwners = new ArrayList<>();
-        ownerIds.forEach( id -> {
-            petOwners.add( petOwnerRepository.findById(id).orElse(null));
-        } );
-
-        petOwners.forEach( petOwner -> {
-            ownedPetRepository.save(OwnedPet.builder().petOwner(petOwner).pet(pet).build());
-        });
     }
 
 }

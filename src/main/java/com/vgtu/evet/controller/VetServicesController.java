@@ -11,7 +11,8 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/vetServises")
+@RequestMapping("/vetServices")
+@CrossOrigin(origins = "http://localhost:3000/")
 public class VetServicesController {
 
     @Autowired

@@ -21,8 +21,7 @@ import javax.validation.constraints.NotNull;
 public class PetOwner
 {
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int id;
+	private String id;
 
     @Column
     @NotNull

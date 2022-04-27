@@ -29,8 +29,7 @@ public class VetService {
 	@Column
 	private double price;
 
-	@OneToOne(cascade = CascadeType.ALL)
-	@JoinColumn(name = "doctor_id", referencedColumnName = "id")
 	@NotNull
-	private Doctor doctor;
+	@Column(name = "vet_service_code")
+	private String vetServiceCode;
 }

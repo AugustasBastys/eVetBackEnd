@@ -1,15 +1,16 @@
 
 package com.vgtu.evet.entities.vetServices;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 
 @Entity
-@Table(name = "doctors")
+@Table(name = "veterinarians")
 @Data
-public class Doctor
+public class Veterinarian
 {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -22,5 +23,10 @@ public class Doctor
 	@Column
 	@Enumerated(EnumType.STRING)
 	private SpecialtyType specialty;
+
+	@ManyToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name = "vet_service_id", referencedColumnName = "id")
+	@NotNull
+	private VetService vetService;
 
 }

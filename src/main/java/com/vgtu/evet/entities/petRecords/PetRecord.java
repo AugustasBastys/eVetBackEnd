@@ -13,7 +13,7 @@ import javax.validation.constraints.NotNull;
 import java.util.List;
 
 @Entity
-@Table(name = "pet_record")
+@Table(name = "pet_records")
 @Data
 @NoArgsConstructor
 @Builder

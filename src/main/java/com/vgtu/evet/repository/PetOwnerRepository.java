@@ -7,8 +7,5 @@ import org.springframework.data.repository.query.Param;
 
 import java.util.List;
 
-public interface PetOwnerRepository extends JpaRepository<PetOwner, Integer> {
-
-    @Query( "select o from PetOwner o where o.id in :ids" )
-    List<PetOwner> findByPetOwnerIds(@Param("ids") List<Integer> petOwnerIds);
+public interface PetOwnerRepository extends JpaRepository<PetOwner, String> {
 }

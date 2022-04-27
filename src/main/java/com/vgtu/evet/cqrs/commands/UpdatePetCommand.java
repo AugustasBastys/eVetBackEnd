@@ -13,7 +13,6 @@ public class UpdatePetCommand {
     private String name;
     private String color;
     private boolean sterilized;
-    private List<Integer> petOwnerIds;
     private boolean hidden;
 
 }

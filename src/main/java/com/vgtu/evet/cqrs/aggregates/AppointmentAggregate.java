@@ -30,23 +30,18 @@ public class AppointmentAggregate {
 
     public Appointment handleCreateAppointmentCommand(CreateAppointmentCommand appointmentCommand) {
 
-//        Pet pet = petRepository.findById(appointmentCommand.getPetId()).orElse(null);
-//        AvailableTime availableTime = availableTimeRepository.findById(appointmentCommand.getAvailableTimeId()).orElse(null);
-//        VetService vetService = vetServiceRepository.findById(appointmentCommand.getVetServiceId()).orElse(null);
-//
-//        return appointmentRepository.save(Appointment.builder()
-//                        .availableTime(availableTime)
-//                        .vetService(vetService)
-//                        .pet(pet)
-//                        .ownersComment(appointmentCommand.getOwnersComment())
-//                        .build());
+        Pet pet = petRepository.findById(appointmentCommand.getPetId()).orElse(null);
+        AvailableTime availableTime = availableTimeRepository.findById(appointmentCommand.getAvailableTimeId()).orElse(null);
+        availableTime.setBooked(true);
+        VetService vetService = vetServiceRepository.findById(appointmentCommand.getVetServiceId()).orElse(null);
 
         return appointmentRepository.save(Appointment.builder()
-                        .vetService(appointmentCommand.getVetService())
-                        .availableTime(appointmentCommand.getAvailableTime())
-                        .pet(appointmentCommand.getPet())
+                        .availableTime(availableTime)
+                        .vetService(vetService)
+                        .pet(pet)
                         .ownersComment(appointmentCommand.getOwnersComment())
                         .build());
+// npx swagger-typescript-api -p http://localhost:8080/v2/api-docs -o ./src/apiClient -n myApi.t
     }
 
     public Appointment handleUpdateAppointmentCommand(UpdateAppointmentCommand appointmentCommand) {
@@ -58,6 +53,9 @@ public class AppointmentAggregate {
         }
         if(appointmentCommand.isCanceled()) {
             appointment.setCanceled(true);
+            AvailableTime availableTime = availableTimeRepository.findById(appointment.getAvailableTime().getId()).orElse(null);
+            availableTime.setBooked(false);
+            appointment.setAvailableTime(availableTime);
         }
 
         return appointmentRepository.save(appointment);

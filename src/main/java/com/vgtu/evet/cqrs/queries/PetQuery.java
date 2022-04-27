@@ -27,8 +27,8 @@ public class PetQuery {
         return pet;
     }
 
-    public List<Pet> getByOwnersId(int ownerId) {
-        List<OwnedPet> ownedPets = ownedPetRepository.findAllOwnedPetsByUserId(ownerId);
+    public List<Pet> getByOwnersId(String ownersId) {
+        List<OwnedPet> ownedPets = ownedPetRepository.findAllOwnedPetsByUserId(ownersId);
 
         List<Pet> pets = new ArrayList<>();
         Pet pet;

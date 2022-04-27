@@ -17,5 +17,4 @@ public class CreatePetCommand {
     private GenderType genderType;
     private boolean sterilized;
     private BreedType breed;
-    private List<Integer> petOwnerIds;
 }

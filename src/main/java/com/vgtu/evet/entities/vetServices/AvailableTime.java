@@ -11,9 +11,10 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.util.Date;
+import javax.validation.constraints.NotNull;
 
 @Entity
-@Table(name = "available_time")
+@Table(name = "available_times")
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
@@ -25,10 +26,15 @@ public class AvailableTime
 	private int id;
 
 	@Column
+	@NotNull
 	private Date date;
 
 	@ManyToOne(cascade = CascadeType.ALL)
-	@JoinColumn(name = "doctor_id", referencedColumnName = "id")
-	private Doctor doctor;
+	@JoinColumn(name = "veterinarian_id", referencedColumnName = "id")
+	@NotNull
+	private Veterinarian veterinarian;
+
+	@Column
+	private boolean booked;
 
 }

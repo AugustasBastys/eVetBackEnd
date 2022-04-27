@@ -10,10 +10,17 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 @EnableGlobalMethodSecurity(prePostEnabled = true)
 public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
 
+    public static final String[] AUTH_WHITELIST = {
+            "/vetServices"
+    };
+
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        http.authorizeRequests()
+        http.cors()
+                .and()
+                .authorizeRequests()
                 .antMatchers(SwaggerConfig.SWAGGER_AUTH_WHITELIST).permitAll()
+                .antMatchers(AUTH_WHITELIST).permitAll()
                 .and()
                 .authorizeRequests()
                 .anyRequest().authenticated()

@@ -6,12 +6,14 @@ import com.vgtu.evet.cqrs.commands.UpdatePetCommand;
 import com.vgtu.evet.cqrs.queries.PetQuery;
 import com.vgtu.evet.entities.pets.Pet;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
 @RequestMapping("/pets")
+@CrossOrigin(origins = "http://localhost:3000/")
 public class PetController {
 
     @Autowired
@@ -24,7 +26,8 @@ public class PetController {
     @ResponseBody
     @PostMapping("/create")
     public Pet createPet(@RequestBody CreatePetCommand petCommand) {
-        return petAggregate.handleCreatePetCommand(petCommand);
+        return petAggregate.handleCreatePetCommand(petCommand, SecurityContextHolder.getContext().
+                getAuthentication().getName());
     }
 
     @ResponseBody
@@ -40,9 +43,10 @@ public class PetController {
     }
 
     @ResponseBody
-    @GetMapping("/owner/{ownerId}")
-    public List<Pet> getPetsOfOwner(@PathVariable int ownerId) {
-        return petQuery.getByOwnersId(ownerId);
+    @GetMapping
+    public List<Pet> getPets() {
+        return petQuery.getByOwnersId(SecurityContextHolder.getContext().
+                getAuthentication().getName());
     }
 
 }

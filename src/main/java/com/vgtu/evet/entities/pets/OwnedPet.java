@@ -6,6 +6,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 
 @Entity
 @Table(name = "owned_pets")
@@ -23,9 +24,9 @@ public class OwnedPet {
     @JoinColumn(name = "pet_id")
     private Pet pet;
 
-    @ManyToOne
-    @JoinColumn(name = "pet_owner_id")
-    private PetOwner petOwner;
+    @Column(name = "pet_owner_id")
+    @NotNull
+    private String petOwner;
 
 
 }
