@@ -1,6 +1,7 @@
 package com.vgtu.evet.entities.petRecords;
 
 import com.vgtu.evet.entities.petRecords.log.Surgery;
+import com.vgtu.evet.entities.petRecords.log.Vaccination;
 import com.vgtu.evet.entities.petRecords.log.Visit;
 import com.vgtu.evet.entities.pets.Pet;
 import lombok.AllArgsConstructor;
@@ -37,4 +38,7 @@ public class PetRecord {
 
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "petRecord")
     private List<Surgery> surgeries;
+
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "petRecord")
+    private List<Vaccination> vaccinations;
 }

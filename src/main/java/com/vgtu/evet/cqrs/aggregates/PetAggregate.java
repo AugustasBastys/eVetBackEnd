@@ -60,7 +60,9 @@ public class PetAggregate {
             pet.setHidden(true);
         }
 
-        return petRepository.save(pet);
+        petRepository.save(pet);
+
+        return pet;
     }
 
 }

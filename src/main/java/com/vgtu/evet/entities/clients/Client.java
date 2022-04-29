@@ -5,6 +5,7 @@
 package com.vgtu.evet.entities.clients;
 
 import com.vgtu.evet.entities.pets.PetOwner;
+import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -15,6 +16,7 @@ import javax.validation.constraints.NotNull;
 @Table(name = "clients")
 @Data
 @NoArgsConstructor
+@AllArgsConstructor
 public class Client
 {
 	@Id

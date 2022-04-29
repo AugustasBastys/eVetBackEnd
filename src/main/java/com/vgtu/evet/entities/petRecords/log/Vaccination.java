@@ -34,7 +34,7 @@ public class Vaccination
 
 	@Column
 	@NotNull
-	private int nextDue;
+	private Date nextDue;
 
 	@ManyToOne
 	@JoinColumn(name = "visit_id", referencedColumnName = "id")

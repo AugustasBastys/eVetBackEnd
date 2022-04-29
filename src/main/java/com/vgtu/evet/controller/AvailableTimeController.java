@@ -9,6 +9,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/availableTimes")
+@CrossOrigin(origins = "http://localhost:3000/")
 public class AvailableTimeController {
 
     @Autowired

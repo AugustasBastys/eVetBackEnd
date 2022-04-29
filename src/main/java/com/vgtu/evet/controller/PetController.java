@@ -13,7 +13,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/pets")
-@CrossOrigin(origins = "http://localhost:3000/")
+@CrossOrigin(originPatterns = "http://localhost:3000/")
 public class PetController {
 
     @Autowired

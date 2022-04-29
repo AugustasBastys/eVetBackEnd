@@ -7,16 +7,11 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/record")
+@CrossOrigin(origins = "http://localhost:3000/")
 public class PetRecordController {
 
     @Autowired
     private PetRecordQuery petRecordQuery;
-
-    @ResponseBody
-    @GetMapping("/{id}")
-    public PetRecord getPetRecordById(@PathVariable int id) {
-        return petRecordQuery.getByRecordId(id);
-    }
 
     @ResponseBody
     @GetMapping("/pet/{id}")
