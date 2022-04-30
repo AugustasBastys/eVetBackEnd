@@ -1,7 +1,8 @@
 package com.vgtu.evet.cqrs.aggregates;
 
 import com.vgtu.evet.cqrs.commands.CreateAppointmentCommand;
-import com.vgtu.evet.cqrs.commands.UpdateAppointmentCommand;
+import com.vgtu.evet.cqrs.commands.CancelAppointmentCommand;
+import com.vgtu.evet.cqrs.commands.RescheduleAppointmentCommand;
 import com.vgtu.evet.entities.appointments.Appointment;
 import com.vgtu.evet.entities.pets.Pet;
 import com.vgtu.evet.entities.vetServices.AvailableTime;
@@ -44,20 +45,32 @@ public class AppointmentAggregate {
 // npx swagger-typescript-api -p http://localhost:8080/v2/api-docs -o ./src/apiClient -n myApi.t
     }
 
-    public Appointment handleUpdateAppointmentCommand(UpdateAppointmentCommand appointmentCommand) {
+    public Appointment handleCancelAppointmentCommand(CancelAppointmentCommand appointmentCommand) {
 
         Appointment appointment = appointmentRepository.findById(appointmentCommand.getId()).orElse(null);
 
-        if(appointmentCommand.getOwnersComment() != null) {
-            appointment.setOwnersComment(appointmentCommand.getOwnersComment());
-        }
-        if(appointmentCommand.isCanceled()) {
             appointment.setCanceled(true);
             AvailableTime availableTime = availableTimeRepository.findById(appointment.getAvailableTime().getId()).orElse(null);
             availableTime.setBooked(false);
             appointment.setAvailableTime(availableTime);
-        }
 
         return appointmentRepository.save(appointment);
     }
+
+    public Appointment handleRescheduleAppointmentCommand(RescheduleAppointmentCommand appointmentCommand) {
+
+        Appointment appointment = appointmentRepository.findById(appointmentCommand.getId()).orElse(null);
+
+            AvailableTime availableTime = availableTimeRepository.findById(appointment.getAvailableTime().getId()).orElse(null);
+            availableTime.setBooked(false);
+
+            AvailableTime newAvailableTime = availableTimeRepository.findById(appointmentCommand.getAvailableTimeId()).orElse(null);
+            newAvailableTime.setBooked(true);
+            appointment.setAvailableTime(newAvailableTime);
+
+
+
+        return appointmentRepository.save(appointment);
+    }
+
 }

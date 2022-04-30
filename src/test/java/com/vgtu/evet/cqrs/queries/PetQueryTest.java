@@ -57,26 +57,21 @@ class PetQueryTest {
 
         ownedPet1 = OwnedPet.builder().id(ID).pet(pet1).petOwner(USER_ID).build();
         ownedPet2 = OwnedPet.builder().id(ID + 1).pet(pet2).petOwner(USER_ID).build();
-        ownedPetList = List.of(ownedPet1, ownedPet2);
+
 
         Mockito.when(petRepository.findById(pet1.getId())).thenReturn(Optional.of(pet1));
         Mockito.when(petRepository.findById(pet2.getId())).thenReturn(Optional.of(pet2));
-        Mockito.when(ownedPetRepository.findAllOwnedPetsByUserId(USER_ID)).thenReturn(ownedPetList);
+        Mockito.when(ownedPetRepository.findAllOwnedPetsByUserId(USER_ID)).thenReturn(List.of(ownedPet1, ownedPet2));
 
     }
 
     @Test
-    void checkGetByIdIsHidden() {
-        Assert.assertEquals(null, petQuery.getById(ID+1));
-    }
-
-    @Test
-    void checkGetByIdIsNotHidden() {
+    void checkGetById() {
         Assert.assertEquals(pet1, petQuery.getById(ID));
     }
 
     @Test
     void checkGetByOwnersId() {
-        Assert.assertEquals(List.of(pet1), petQuery.getByOwnersId(USER_ID));
+        Assert.assertEquals(List.of(pet1, pet2), petQuery.getByOwnersId(USER_ID));
     }
 }

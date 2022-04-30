@@ -21,9 +21,7 @@ public class PetQuery {
 
     public Pet getById(int id) {
         Pet pet = petRepository.findById(id).orElse(null);
-        if(pet.isHidden()) {
-            return null;
-        }
+
         return pet;
     }
 
@@ -35,9 +33,7 @@ public class PetQuery {
 
         for(OwnedPet ownedPet: ownedPets) {
             pet = petRepository.findById(ownedPet.getPet().getId()).orElse(null);
-            if(!pet.isHidden()) {
-                pets.add(pet);
-            }
+            pets.add(pet);
         }
 
         return pets;

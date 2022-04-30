@@ -2,7 +2,8 @@ package com.vgtu.evet.controller;
 
 import com.vgtu.evet.cqrs.aggregates.AppointmentAggregate;
 import com.vgtu.evet.cqrs.commands.CreateAppointmentCommand;
-import com.vgtu.evet.cqrs.commands.UpdateAppointmentCommand;
+import com.vgtu.evet.cqrs.commands.CancelAppointmentCommand;
+import com.vgtu.evet.cqrs.commands.RescheduleAppointmentCommand;
 import com.vgtu.evet.cqrs.queries.AppointmentQuery;
 import com.vgtu.evet.entities.appointments.Appointment;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,6 +15,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/appointments")
+@CrossOrigin(origins = "http://localhost:3000/")
 public class AppointmentController {
 
     @Autowired
@@ -32,9 +34,15 @@ public class AppointmentController {
     }
 
     @ResponseBody
-    @PutMapping("/update")
-    public Appointment updateAppointment(@RequestBody UpdateAppointmentCommand appointmentCommand) {
-        return appointmentAggregate.handleUpdateAppointmentCommand(appointmentCommand);
+    @PutMapping("/cancel")
+    public Appointment cancelAppointment(@RequestBody CancelAppointmentCommand appointmentCommand) {
+        return appointmentAggregate.handleCancelAppointmentCommand(appointmentCommand);
+    }
+
+    @ResponseBody
+    @PutMapping("/reschedule")
+    public Appointment rescheduleAppointment(@RequestBody RescheduleAppointmentCommand appointmentCommand) {
+        return appointmentAggregate.handleRescheduleAppointmentCommand(appointmentCommand);
     }
 
     @ResponseBody

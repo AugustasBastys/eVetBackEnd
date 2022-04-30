@@ -50,6 +50,5 @@ public class Pet
 	private BreedType breed;
 
 	@Column
-	@JsonIgnore
 	private boolean hidden;
 }

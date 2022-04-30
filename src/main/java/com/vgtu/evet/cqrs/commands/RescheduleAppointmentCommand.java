@@ -3,10 +3,13 @@ package com.vgtu.evet.cqrs.commands;
 import lombok.Builder;
 import lombok.Data;
 
+import java.util.Date;
+
 @Data
 @Builder
-public class UpdateAppointmentCommand {
+public class RescheduleAppointmentCommand {
+
     private int id;
-    private boolean canceled;
-    private String ownersComment;
+    private int availableTimeId;
+
 }

@@ -9,6 +9,7 @@ import com.vgtu.evet.entities.pets.Pet;
 import com.vgtu.evet.entities.vetServices.AvailableTime;
 import com.vgtu.evet.entities.vetServices.VetService;
 import com.vgtu.evet.repository.OwnedPetRepository;
+import com.vgtu.evet.repository.PetRecordRepository;
 import com.vgtu.evet.repository.PetRepository;
 import org.junit.Assert;
 import org.junit.jupiter.api.BeforeEach;
@@ -44,6 +45,9 @@ class PetAggregateTest {
 
     @MockBean
     private OwnedPetRepository ownedPetRepository;
+
+    @MockBean
+    private PetRecordRepository petRecordRepository;
 
     @Autowired
     private PetAggregate petAggregate;

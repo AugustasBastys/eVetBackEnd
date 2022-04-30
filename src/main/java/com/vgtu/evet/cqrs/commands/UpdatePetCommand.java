@@ -3,6 +3,7 @@ package com.vgtu.evet.cqrs.commands;
 import lombok.Builder;
 import lombok.Data;
 
+import java.util.Date;
 import java.util.List;
 
 @Data
@@ -14,5 +15,6 @@ public class UpdatePetCommand {
     private String color;
     private boolean sterilized;
     private boolean hidden;
+    private Date birthday;
 
 }
