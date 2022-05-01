@@ -18,6 +18,6 @@ public class AvailableTimeQuery {
     }
 
     public List<AvailableTime> getTimesByService(int id) {
-        return availableTimeRepository.findAllTimesByServiceId(id);
+        return availableTimeRepository.findAllTimesByServiceIdAndIsNotBooked(id);
     }
 }
