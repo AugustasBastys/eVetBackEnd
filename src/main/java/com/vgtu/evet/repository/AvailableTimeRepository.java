@@ -8,9 +8,8 @@ import org.springframework.data.repository.query.Param;
 import java.util.List;
 
 public interface AvailableTimeRepository extends JpaRepository<AvailableTime, Integer> {
-    List<AvailableTime> findByVeterinarianId(int id);
+    List<AvailableTime> findByBookedFalseAndVeterinarianId(int id);
 
-    @Query("SELECT a FROM AvailableTime a, Veterinarian v where v.vetService.id = :serviceId AND a.veterinarian.id = v.id" +
-            " and a.booked = false")
+    @Query("SELECT a FROM AvailableTime a, Veterinarian v where v.vetService.id = :serviceId AND a.veterinarian.id = v.id AND a.booked = false")
     List<AvailableTime> findAllTimesByServiceIdAndIsNotBooked(@Param("serviceId") int id);
 }

@@ -23,7 +23,7 @@ public class AppointmentQuery {
     }
 
     public List<Appointment> getByPetId(int id) {
-        return appointmentRepository.findByPetIdAndCanceledFalse(id);
+        return appointmentRepository.findByPetId(id);
     }
 
     public List<Appointment> getAllUserPetsAppointments(String userId) {

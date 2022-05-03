@@ -47,6 +47,5 @@ public class Appointment
 	private String ownersComment;
 
 	@Column
-	@JsonIgnore
 	private boolean canceled;
 }

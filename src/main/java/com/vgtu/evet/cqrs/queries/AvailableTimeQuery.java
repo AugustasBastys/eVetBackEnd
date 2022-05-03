@@ -14,7 +14,7 @@ public class AvailableTimeQuery {
     private AvailableTimeRepository availableTimeRepository;
 
     public List<AvailableTime> getTimesByVeterinarian(int id) {
-       return availableTimeRepository.findByVeterinarianId(id);
+       return availableTimeRepository.findByBookedFalseAndVeterinarianId(id);
     }
 
     public List<AvailableTime> getTimesByService(int id) {

@@ -74,7 +74,7 @@ class AppointmentQueryTest {
         petList.add(pet);
 
         Mockito.when(petQuery.getByOwnersId(USER_ID)).thenReturn(petList);
-        Mockito.when(appointmentRepository.findByPetIdAndCanceledFalse(ID)).thenReturn(appointmentList);
+        Mockito.when(appointmentRepository.findByPetId(ID)).thenReturn(appointmentList);
     }
 
     @Test
