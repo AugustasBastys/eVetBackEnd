@@ -19,9 +19,6 @@ public class PetAggregate {
     private PetRepository petRepository;
 
     @Autowired
-    private PetOwnerRepository petOwnerRepository;
-
-    @Autowired
     private OwnedPetRepository ownedPetRepository;
 
     @Autowired

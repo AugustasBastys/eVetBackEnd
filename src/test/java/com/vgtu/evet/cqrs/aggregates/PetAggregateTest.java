@@ -2,12 +2,9 @@ package com.vgtu.evet.cqrs.aggregates;
 
 import com.vgtu.evet.cqrs.commands.CreatePetCommand;
 import com.vgtu.evet.cqrs.commands.UpdatePetCommand;
-import com.vgtu.evet.entities.appointments.Appointment;
 import com.vgtu.evet.entities.pets.BreedType;
 import com.vgtu.evet.entities.pets.GenderType;
 import com.vgtu.evet.entities.pets.Pet;
-import com.vgtu.evet.entities.vetServices.AvailableTime;
-import com.vgtu.evet.entities.vetServices.VetService;
 import com.vgtu.evet.repository.OwnedPetRepository;
 import com.vgtu.evet.repository.PetRecordRepository;
 import com.vgtu.evet.repository.PetRepository;
