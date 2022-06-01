@@ -42,7 +42,6 @@ public class AppointmentAggregate {
                         .pet(pet)
                         .ownersComment(appointmentCommand.getOwnersComment())
                         .build());
-// npx swagger-typescript-api -p http://localhost:8080/v2/api-docs -o ./src/apiClient -n myApi.t
     }
 
     public Appointment handleCancelAppointmentCommand(CancelAppointmentCommand appointmentCommand) {
